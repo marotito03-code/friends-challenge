@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#241b35">
+<title>Friends · The Ultimate Challenge (prueba)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<script src="./img/friends/creditos.js"></script>
+<style>
+:root{--bg:#171321;--panel:#241d31;--panel2:#30263e;--cream:#fff4df;--muted:#c7b9ca;--purple:#7650a5;--yellow:#f4c95d;--coral:#e88778;--mint:#83c9ad;--line:#51445e}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#443052 0,#211a2d 38%,#14111d 100%);color:var(--cream);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer;border:0}button:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.wrap{max-width:1120px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}.brand{font-weight:900;letter-spacing:.13em;font-size:13px;color:var(--yellow)}.top-actions{display:flex;gap:8px}.smallbtn{background:#ffffff12;color:var(--cream);border:1px solid var(--line);padding:9px 12px;border-radius:12px;font-size:12px}
+.hero{border:1px solid #ffffff20;border-radius:26px;overflow:hidden;background:linear-gradient(115deg,#3b294a,#241c34 55%,#57404a);padding:clamp(24px,5vw,52px);position:relative;min-height:350px;display:flex;align-items:center}.hero:after{content:"☕";position:absolute;right:6%;bottom:-40px;font-size:clamp(170px,28vw,310px);opacity:.13;transform:rotate(-12deg)}.hero-content{max-width:650px;position:relative;z-index:1}.eyebrow{color:var(--yellow);font-size:11px;letter-spacing:.22em;font-weight:800;text-transform:uppercase}.hero h1{font-size:clamp(38px,7vw,76px);line-height:.96;margin:14px 0 18px;letter-spacing:-.055em}.hero h1 span{color:var(--yellow)}.hero p{color:#e2d7e4;line-height:1.65;max-width:540px}.primary{background:var(--yellow);color:#2b2030;padding:14px 20px;border-radius:14px;font-weight:900;box-shadow:0 7px 0 #b98d38;transition:.15s}.primary:active{transform:translateY(4px);box-shadow:0 3px 0 #b98d38}.secondary{background:#ffffff12;color:var(--cream);padding:12px 16px;border:1px solid #ffffff28;border-radius:13px;font-weight:700}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:28px 0 14px}.section-head h2{font-size:23px;margin:0}.section-head p{color:var(--muted);font-size:12px;margin:5px 0 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.stat{background:#160f20aa;border:1px solid #ffffff18;border-radius:15px;padding:12px}.stat b{display:block;font-size:22px;color:var(--yellow)}.stat small{color:var(--muted);font-size:11px}
+.map-shell{background:linear-gradient(140deg,#29213a,#1c1828);border:1px solid #ffffff20;border-radius:24px;padding:18px;overflow:hidden}.map{position:relative;min-height:460px;border-radius:18px;background-color:#d8c9ae;background-image:linear-gradient(90deg,#ffffff55 1px,transparent 1px),linear-gradient(#ffffff55 1px,transparent 1px);background-size:46px 46px;overflow:hidden;color:#322b35}.river{position:absolute;right:-5%;top:-15%;width:31%;height:135%;background:#8bb8c0;transform:rotate(12deg);border-left:7px solid #6c9ca8;border-radius:45%}.park{position:absolute;left:7%;top:5%;width:26%;height:24%;background:#a7bc91;border-radius:35% 45% 30% 40%;transform:rotate(-9deg);opacity:.9}.streetlabel{position:absolute;color:#6c625e;font-size:9px;font-weight:900;letter-spacing:.15em;transform:rotate(-90deg)}.pin{position:absolute;z-index:2;transform:translate(-50%,-50%);width:160px;text-align:center;background:#fff8e9;border:2px solid #54465c;border-radius:16px;padding:10px 8px;box-shadow:0 6px 0 #84766a;cursor:pointer;color:#34293d}.pin .emoji{font-size:27px;display:block}.pin b{display:block;font-size:11px;margin-top:4px}.pin small{font-size:9px;color:#766b70}.pin.locked{filter:grayscale(1);opacity:.56;cursor:not-allowed}.pin.done{border-color:#4f997e;box-shadow:0 6px 0 #4f997e}.pin.current{border-color:#d99e32;box-shadow:0 6px 0 #d99e32;animation:pulse 1.7s infinite}.map-note{position:absolute;left:16px;bottom:14px;background:#fff8e9dd;padding:9px 12px;border-radius:10px;font-size:10px;font-weight:800;z-index:3;color:#403443}@keyframes pulse{50%{transform:translate(-50%,-50%) scale(1.04)}}
+.zones{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.zone{background:linear-gradient(140deg,#30263f,#211a2d);border:1px solid #ffffff1c;border-radius:19px;padding:16px;display:flex;gap:13px;align-items:center;text-align:left;color:var(--cream)}.zone .zemoji{font-size:31px;background:#ffffff12;width:55px;height:55px;display:grid;place-items:center;border-radius:15px;flex-shrink:0}.zone b{display:block}.zone small{color:var(--muted);font-size:11px;display:block;margin-top:4px}.zone .tag{margin-left:auto;font-size:10px;color:var(--yellow);white-space:nowrap}
+.screen{display:none}.screen.active{display:block}.back{background:none;color:var(--muted);padding:8px 0;margin-bottom:12px}.zone-hero{background:linear-gradient(110deg,#493455,#282037);border-radius:22px;padding:24px;border:1px solid #ffffff20}.zone-hero h2{font-size:32px;margin:8px 0}.zone-hero p{color:var(--muted);margin:0;line-height:1.5}.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.level{background:#2b2238;border:1px solid #ffffff1b;border-radius:17px;padding:16px;text-align:left;color:var(--cream);min-height:126px}.level.locked{opacity:.42;cursor:not-allowed}.level.done{border-color:#6db596}.level .num{font-size:10px;color:var(--yellow);font-weight:900;letter-spacing:.12em}.level strong{display:block;margin:9px 0 5px}.level small{color:var(--muted);font-size:11px}
+.quiz-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}.pill{border:1px solid #ffffff25;background:#ffffff10;padding:8px 11px;border-radius:99px;font-size:11px;color:var(--muted)}.progress{height:7px;background:#ffffff18;border-radius:9px;overflow:hidden;margin:12px 0 22px}.progress span{display:block;height:100%;background:var(--yellow);width:0;transition:.3s}.quiz-card{background:linear-gradient(145deg,#332840,#211a2e);border:1px solid #ffffff22;border-radius:24px;padding:clamp(20px,4vw,34px);max-width:780px;margin:auto}.q-kicker{color:var(--yellow);font-size:10px;letter-spacing:.18em;font-weight:900}.quiz-card h2{font-size:clamp(22px,4vw,34px);line-height:1.2;margin:13px 0 20px}.options{display:grid;gap:10px}.option{background:#ffffff0b;border:1px solid #ffffff26;color:var(--cream);padding:14px 16px;text-align:left;border-radius:13px;display:flex;gap:12px;align-items:center;line-height:1.35}.option .letter{width:27px;height:27px;border-radius:8px;background:#ffffff17;display:grid;place-items:center;font-size:11px;font-weight:900;flex-shrink:0}.option:hover{border-color:var(--yellow);background:#ffffff14}.option.correct{border-color:var(--mint);background:#83c9ad20}.option.wrong{border-color:var(--coral);background:#e8877820}.option:disabled{cursor:default}.feedback{margin-top:16px;padding:14px;border-radius:13px;background:#ffffff0d;color:#ded2e1;line-height:1.5;font-size:13px;display:none}.feedback.show{display:block}.feedback b{color:var(--yellow)}.quiz-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:18px}.hint{color:var(--yellow);background:none;font-size:12px;font-weight:800}.timer{color:var(--yellow);font-weight:900;font-variant-numeric:tabular-nums}.result{text-align:center;padding:32px 20px}.result .big{font-size:64px}.result h2{font-size:34px;margin:8px}.result p{color:var(--muted);line-height:1.6}.modal{position:fixed;inset:0;background:#100c18dd;display:none;align-items:center;justify-content:center;padding:20px;z-index:20}.modal.show{display:flex}.modal-box{max-width:520px;width:100%;background:#2a2138;border:1px solid #ffffff30;border-radius:23px;padding:27px;text-align:center;box-shadow:0 25px 80px #0008}.modal-box h2{margin:8px}.modal-box p{color:var(--muted);line-height:1.6}.field{width:100%;background:#181322;border:1px solid var(--line);border-radius:11px;padding:12px;color:var(--cream);margin:7px 0 14px}.footer{color:#95899b;font-size:10px;text-align:center;padding:28px 10px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#fff4df;color:#30263b;padding:12px 18px;border-radius:12px;font-size:12px;font-weight:800;display:none;z-index:30}.toast.show{display:block}
+.temporadas{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}.temp{background:#160f20aa;border:1px solid #ffffff22;border-radius:12px;padding:8px 12px;font-size:11px;color:var(--muted)}.temp b{color:var(--yellow);display:block;font-size:12px}.temp.on{border-color:var(--yellow)}.temp.on b{color:var(--cream)}
+.pin.fecha small{color:#a3542f;font-weight:900}
+.polaroid{background:#fff;color:#2b2030;padding:14px 14px 18px;border-radius:6px;transform:rotate(-2deg);box-shadow:0 14px 40px #0008;margin:14px auto 18px;max-width:330px}.polaroid .foto{height:150px;border-radius:3px;display:grid;place-items:center;font-size:80px;background:linear-gradient(135deg,#f4c95d,#e88778)}.polaroid p{color:#2b2030!important;font-family:Georgia,serif;font-style:italic;font-size:16px;margin:12px 4px 0}
+#confeti{position:fixed;inset:0;pointer-events:none;z-index:40}
+/* ---------- estética Friends ---------- */
+#fondo{position:fixed;inset:0;z-index:-2;background:#140f1d}
+#fondo i{position:absolute;inset:-20px;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s ease;filter:saturate(1.05)}
+#fondo i.on{opacity:1}
+#fondo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#120d1ccc 0%,#120d1c88 35%,#120d1cdd 100%)}
+body{background:transparent!important}
+.logoF{font-family:"Barlow Condensed",sans-serif;font-weight:600;letter-spacing:.04em;line-height:1;display:inline-flex;align-items:center;color:#fff;text-shadow:0 3px 18px #0009}
+.logoF .pt{display:inline-block;width:.16em;height:.16em;border-radius:50%;margin:0 .14em;transform:translateY(-.02em)}
+.hero h1.logoF{font-size:clamp(58px,13vw,128px);margin:10px 0 2px;letter-spacing:.05em}
+.subLogo{font-family:"Courier Prime",monospace;letter-spacing:.32em;font-size:clamp(12px,2.2vw,16px);color:var(--yellow);margin-bottom:18px;text-transform:uppercase}
+.brand{font-family:"Barlow Condensed",sans-serif!important;font-size:22px!important;letter-spacing:.06em!important;color:#fff!important}
+.section-head h2,.zone-hero h2,.result h2,.modal-box h2{font-family:"Barlow Condensed",sans-serif;letter-spacing:.03em;text-transform:uppercase}
+.quiz-card h2{font-family:"Barlow Condensed",sans-serif;font-weight:600;letter-spacing:.01em}
+.q-kicker,.eyebrow,.num{font-family:"Courier Prime",monospace!important;letter-spacing:.16em!important}
+.hero,.zone-hero,.quiz-card,.map-shell,.stat,.modal-box{background:rgba(26,19,38,.62)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.hero{background:linear-gradient(115deg,rgba(40,28,56,.7),rgba(20,14,30,.45))!important}
+.hero:after{content:""!important}
+.level{position:relative;overflow:hidden;min-height:150px;background-color:#2b2238;background-size:cover;display:flex;flex-direction:column;justify-content:flex-end}
+.level::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0000 15%,#120d1ce6 78%);z-index:0}
+.level>*{position:relative;z-index:1}
+.level .lugar{font-family:"Courier Prime",monospace;font-size:10px;color:#fff;opacity:.85;letter-spacing:.08em}
+.zone{background-color:#2b2238;background-size:cover;background-position:center;position:relative;overflow:hidden}
+.zone::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#1a1326f0 30%,#1a132699);z-index:0}
+.zone>*{position:relative;z-index:1}
+.creditos{max-height:55vh;overflow:auto;text-align:left;font-size:11px;color:var(--muted)}
+.creditos a{color:var(--yellow)}
+.video{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;margin:14px 0}.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.modal-box.ancho{max-width:860px}
+@media(max-width:650px){.wrap{padding:14px}.top{margin-bottom:14px}.hero{min-height:320px}.hero:after{right:-8%;font-size:190px}.stats{gap:7px}.stat{padding:10px}.stat b{font-size:19px}.zones{grid-template-columns:1fr}.map{min-height:390px}.pin{width:120px;padding:8px 5px}.pin .emoji{font-size:22px}.pin b{font-size:10px}.pin small{font-size:8px}.level-grid{grid-template-columns:repeat(2,1fr)}.quiz-head{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<div id="fondo"><i></i><i></i></div>
+<div class="wrap">
+<header class="top"><span class="smallbtn" style="background:#e8473f;color:#fff;border-color:#e8473f">VERSIÓN DE PRUEBA · todo abierto</span><div class="brand" id="brand"></div><div class="top-actions"><button class="smallbtn" onclick="verIntro()">▶ Intro</button><button class="smallbtn" id="sonidoBtn" onclick="toggleSonido()">🔊</button><button class="smallbtn" onclick="showHelp()">Cómo jugar</button></div></header>
+
+<section id="home" class="screen active">
+ <div class="hero"><div class="hero-content"><div class="eyebrow">Planeta CP-04 · Para Lucía · 10 temporadas · 6 amigos</div><h1 class="logoF" id="logoHero"></h1><div class="subLogo">The Ultimate Challenge</div><p>Seis amigos. Una ciudad. Treinta desafíos. Solo una auténtica fan puede recorrer todos los escenarios y conquistar el título definitivo.</p><div class="temporadas" id="temporadas"></div><button class="primary" onclick="goMap()">EMPEZAR LA AVENTURA →</button><div class="stats"><div class="stat"><b id="homeProgress">0/30</b><small>DESAFÍOS SUPERADOS</small></div><div class="stat"><b id="homeScore">0</b><small>PUNTOS</small></div><div class="stat"><b id="homeRank">Novata</b><small>RANGO ACTUAL</small></div></div></div></div>
+ <div class="section-head"><div><h2>Tu recorrido por Nueva York</h2><p>Desbloquea cada localización para avanzar.</p></div></div>
+ <div class="map-shell"><div class="map" id="miniMap">
+  <div class="river"></div><div class="park"></div><span class="streetlabel" style="left:39%;top:25%">BROADWAY</span><span class="streetlabel" style="left:55%;top:67%">5TH AVENUE</span>
+  <button class="pin current" style="left:28%;top:40%" onclick="openZone(0)"><span class="emoji">☕</span><b>Central Perk</b><small>La primera parada</small></button>
+  <button class="pin locked" style="left:66%;top:22%" onclick="openZone(1)"><span class="emoji">🟣</span><b>Apartamento de Monica</b><small>Memoria y detalles</small></button>
+  <button class="pin locked" style="left:31%;top:76%" onclick="openZone(2)"><span class="emoji">⚽</span><b>Joey & Chandler</b><small>Caos y cultura pop</small></button>
+  <button class="pin locked" style="left:72%;top:54%" onclick="openZone(3)"><span class="emoji">🦖</span><b>Museo de Ross</b><small>Modo experto</small></button>
+  <button class="pin locked" style="left:50%;top:48%" onclick="openZone(4)"><span class="emoji">🌆</span><b>El gran final</b><small>La prueba definitiva</small></button>
+  <div class="map-note">MAPA DE MANHATTAN · TU AVENTURA COMIENZA AQUÍ</div>
+ </div></div>
+ <div class="section-head"><div><h2>Las cinco localizaciones</h2><p>Cada lugar esconde seis pruebas.</p></div></div>
+ <div class="zones" id="zoneList"></div>
+ <div class="footer">Una aventura fan-made inspirada en el universo de Friends, hecha solo para Lucía. No oficial ni afiliada a Warner Bros. · <a href="#" onclick="verCreditos();return false" style="color:var(--yellow)">Créditos de las fotos</a></div>
+</section>
+
+<section id="zoneScreen" class="screen">
+ <button class="back" onclick="goMap()">← VOLVER AL MAPA</button>
+ <div class="zone-hero"><div class="eyebrow" id="zoneEyebrow">LOCALIZACIÓN 01</div><h2 id="zoneTitle">Central Perk</h2><p id="zoneDesc"></p></div>
+ <div class="section-head"><div><h2>Selecciona un desafío</h2><p>Completa los seis para desbloquear la siguiente localización.</p></div></div>
+ <div class="level-grid" id="levelGrid"></div>
+</section>
+
+<section id="quizScreen" class="screen">
+ <button class="back" onclick="confirmExit()">← SALIR DEL DESAFÍO</button>
+ <div class="quiz-head"><span class="pill" id="quizLocation">CENTRAL PERK</span><span class="pill">PUNTOS: <b id="quizScore">0</b></span><span class="pill">TIEMPO: <b class="timer" id="timer">20</b>s</span></div>
+ <div class="progress"><span id="quizProgress"></span></div>
+ <div class="quiz-card" id="quizCard">
+  <div class="q-kicker" id="qKicker">DESAFÍO 01 · CALENTAMIENTO</div>
+  <h2 id="question">Pregunta</h2>
+  <div class="options" id="options"></div>
+  <div class="feedback" id="feedback"></div>
+  <div class="quiz-footer"><button class="hint" id="hintBtn" onclick="useHint()">✦ USAR PISTA (−25 PTS)</button><button class="primary" id="nextBtn" onclick="nextQuestion()" style="display:none">CONTINUAR →</button></div>
+ </div>
+</section>
+
+<section id="resultScreen" class="screen">
+ <div class="quiz-card result"><div class="big" id="resultEmoji">🏆</div><div class="eyebrow">DESAFÍO COMPLETADO</div><h2 id="resultTitle">¡Lo has conseguido!</h2><p id="resultText"></p><div class="stats"><div class="stat"><b id="resultPoints">0</b><small>PUNTOS GANADOS</small></div><div class="stat"><b id="resultCorrect">0/5</b><small>ACIERTOS</small></div><div class="stat"><b id="resultRank">Fan</b><small>RANGO</small></div></div><br><button class="primary" onclick="backToZone()">VOLVER A LA LOCALIZACIÓN →</button></div>
+</section>
+</div>
+
+<canvas id="confeti"></canvas><div class="modal" id="modal"><div class="modal-box" id="modalContent"></div></div><div class="toast" id="toast"></div>
+
+<script>document.write('<script src="./datos/calendario.js?v='+Date.now()+'"><\/script>')</script>
+<script src="./js/comun.js"></script>
+<script>
+Universo.desbloqueado=()=>true; // VERSIÓN DE PRUEBA: todo desbloqueado
+// Temporadas: qué localizaciones se abren cada viernes de diciembre
+const FECHA_ZONA=[4,4,11,11,18];
+const TEMPORADAS=[{d:4,zonas:[0,1],t:"Temporada 1"},{d:11,zonas:[2,3],t:"Temporada 2"},{d:18,zonas:[4],t:"Temporada 3"}];
+const CARTAS=[
+ {e:"🛋️",t:"Como el sofá naranja de Central Perk: mi sitio favorito del mundo es a tu lado."},
+ {e:"🚪",t:"Monica tiene su armario secreto. Yo tengo uno lleno de razones por las que te quiero."},
+ {e:"🍕",t:"Joey no comparte la comida. Yo contigo lo compartiría todo… bueno, casi todo el sushi."},
+ {e:"🦖",t:"Ross se casó tres veces. A mí me basta con una vida entera contigo."},
+ {e:"🦞",t:"Las langostas se emparejan para toda la vida. Tú eres mi langosta."}
+];
+const IMG="./img/friends/";
+const LUGARES=[
+ {hero:"f02",lv:[["f02","El sofá naranja"],["f00","La barra del café"],["f03","Bajo el letrero"],["f05","El rincón del neón"],["f10","Central Perk de noche"],["f12","Las mesas del fondo"]]},
+ {hero:"f14",lv:[["f14","La puerta morada"],["f01","The One With…"],["f08","El salón de siempre"],["f17","El edificio"],["f19","Grove Street"],["f18","Las escaleras de incendios"]]},
+ {hero:"f07",lv:[["f07","Escaleras de incendios"],["f18","El vecindario"],["f13","Bajando a la calle"],["f19","De vuelta a casa"],["f17","La esquina del edificio"],["f01","Detrás de las cámaras"]]},
+ {hero:"f22",lv:[["f15","La sala de los dinosaurios"],["f16","El gran esqueleto"],["f22","Cara a cara con el T-Rex"],["f15","La galería superior","right center"],["f16","Entre fósiles","left center"],["f22","El despacho del doctor Geller","left center"]]},
+ {hero:"f21",lv:[["f20","Manhattan de noche"],["f21","Las luces de Midtown"],["f23","Washington Square"],["f19","Grove Street"],["f17","Greenwich Village"],["f02","Vuelta a Central Perk"]]}
+];
+let capa=0;
+function setFondo(f,pos){const c=document.querySelectorAll("#fondo i"),url=`url(${IMG}${f}.jpg)`;if(c[capa].style.backgroundImage===url)return;capa=1-capa;c[capa].style.backgroundImage=url;c[capa].style.backgroundPosition=pos||"center";c[capa].classList.add("on");c[1-capa].classList.remove("on")}
+function logoHTML(){const L="FRIENDS",C=["#e8473f","#f4c95d","#3f7fe0","#e8473f","#f4c95d","#3f7fe0"];return [...L].map((l,i)=>l+(i<L.length-1?`<span class="pt" style="background:${C[i]}"></span>`:"")).join("")}
+function verCreditos(){openModal(`<div class="eyebrow">FOTOS CON LICENCIA LIBRE · WIKIMEDIA COMMONS</div><h2>Créditos</h2><div class="creditos">${(window.CREDITOS_FOTOS||[]).map(c=>`<p><b>${escapeHtml(c.t)}</b><br>${escapeHtml(c.a)} · ${escapeHtml(c.l)} · <a href="${c.u}" target="_blank" rel="noopener">ver original</a></p>`).join("")}</div><button class="primary" onclick="closeModal()">CERRAR</button>`)}
+const zones=[
+ {name:"Central Perk",emoji:"☕",subtitle:"El punto de encuentro",desc:"Todo empieza donde se reúnen los seis amigos. Calienta motores con preguntas generales, relaciones y momentos inolvidables.",color:"coffee",levels:["La primera taza","Los seis amigos","Historias cruzadas","Momentos míticos","La memoria del sofá","El examen de Gunther"]},
+ {name:"Apartamento de Monica",emoji:"🟣",subtitle:"El hogar de los secretos",desc:"Entra en el apartamento de la puerta morada. Fíjate en los objetos, las costumbres, las celebraciones y los detalles de la vida cotidiana.",levels:["Bienvenida a casa","La cocina de Monica","El armario secreto","Acción de gracias","La puerta morada","El reto de la anfitriona"]},
+ {name:"Apartamento de Joey y Chandler",emoji:"⚽",subtitle:"Donde reina el entretenimiento",desc:"Televisión, futbolín, apuestas y decisiones cuestionables. Aquí se examina tu conocimiento de las bromas, trabajos y aventuras de los dos compañeros.",levels:["Reglas de convivencia","El futbolín","Actores y trabajos","Apuestas legendarias","La vida en el sillón","El desafío de Joey"]},
+ {name:"Museo de Ross",emoji:"🦖",subtitle:"Solo para mentes privilegiadas",desc:"Ross ha preparado un examen de precisión. Necesitarás recordar matrimonios, trabajos, viajes, relaciones y detalles que no aparecen en los resúmenes.",levels:["Paleontología 101","Tres matrimonios","La vida académica","Relaciones complicadas","Detalles de experto","El examen del doctor Geller"]},
+ {name:"Nueva York: el gran final",emoji:"🌆",subtitle:"La prueba definitiva",desc:"La ciudad entera se convierte en el tablero. Mezcla de temporadas, decisiones, memoria y preguntas finales. Aquí se decide si eres una fan auténtica.",levels:["De Nueva York al mundo","La pandilla al completo","Diez temporadas","La recta final","El desafío imposible","El último capítulo"]}
+];
+// Six challenges per zone; question banks are intentionally varied and include explanations.
+const Q=[
+[
+[
+{q:"¿En qué ciudad transcurre principalmente Friends?",o:["Los Ángeles","Nueva York","Chicago","Boston"],a:1,e:"La historia de los seis amigos transcurre principalmente en Manhattan, Nueva York.",h:"Es una de las ciudades más reconocibles de Estados Unidos."},
+{q:"¿Cómo se llama la cafetería donde se reúnen habitualmente?",o:["Central Park Café","Coffee House","Central Perk","Manhattan Coffee"],a:2,e:"Central Perk es el lugar de encuentro habitual del grupo.",h:"Su nombre juega con la palabra inglesa 'perk'."},
+{q:"¿Cuál de estos personajes trabaja como paleontólogo?",o:["Joey","Ross","Chandler","Gunther"],a:1,e:"Ross Geller es paleontólogo y trabaja en el ámbito académico y museístico.",h:"Es el hermano de Monica."},
+{q:"¿Qué personaje es conocido por ser chef?",o:["Phoebe","Rachel","Monica","Janice"],a:2,e:"Monica desarrolla su carrera profesional como chef.",h:"Es especialmente competitiva con la limpieza y el orden."},
+{q:"¿Cuál es el apellido de Rachel?",o:["Buffay","Green","Geller","Bing"],a:1,e:"Rachel Green es uno de los seis personajes protagonistas.",h:"Su nombre completo empieza por R."}
+],
+[
+{q:"¿Cuántos protagonistas principales forman el grupo de amigos?",o:["Cuatro","Cinco","Seis","Siete"],a:2,e:"El grupo central está formado por Rachel, Monica, Phoebe, Joey, Chandler y Ross.",h:"Piensa en el número de personas que aparecen en el sofá."},
+{q:"¿Qué relación familiar tienen Ross y Monica?",o:["Primos","Hermanos","Cuñados","No tienen parentesco"],a:1,e:"Ross y Monica son hermanos Geller.",h:"Comparten padres."},
+{q:"¿Quién toca la guitarra y compone canciones muy particulares?",o:["Rachel","Monica","Phoebe","Janice"],a:2,e:"Phoebe Buffay toca la guitarra y canta canciones cómicas y peculiares.",h:"Su repertorio incluye una canción sobre un animal."},
+{q:"¿Cuál es el apellido de Chandler?",o:["Bing","Tribbiani","Geller","Green"],a:0,e:"Chandler Bing es el nombre completo del personaje.",h:"Su apellido se utiliza en muchas bromas."},
+{q:"¿Quién trabaja como actor durante buena parte de la serie?",o:["Joey","Ross","Richard","Gunther"],a:0,e:"Joey Tribbiani persigue una carrera como actor.",h:"Su profesión le lleva a audiciones y castings."}
+],
+[
+{q:"¿Cómo se llama la hermana gemela de Phoebe?",o:["Ursula","Amy","Jill","Emily"],a:0,e:"Ursula es la hermana gemela de Phoebe.",h:"También aparece en otra sitcom."},
+{q:"¿Qué personaje es dueño de Central Perk?",o:["Gunther","Ned","Terry","Joey"],a:2,e:"Terry es el propietario de Central Perk durante parte de la serie; Gunther es el empleado más reconocible.",h:"No es el camarero rubio."},
+{q:"¿Qué personaje tiene una obsesión especialmente conocida con la limpieza y el orden?",o:["Monica","Phoebe","Rachel","Joey"],a:0,e:"Monica es extremadamente organizada y perfeccionista.",h:"Es la anfitriona habitual del apartamento."},
+{q:"¿Cuál es el segundo nombre de Chandler?",o:["Muriel","Francis","Michael","No se revela"],a:0,e:"El segundo nombre de Chandler es Muriel.",h:"Es un dato que aparece en la serie y suele sorprender."},
+{q:"¿Qué personaje tiene una relación especialmente complicada con Janice?",o:["Ross","Chandler","Joey","Gunther"],a:1,e:"Janice mantiene una relación intermitente muy recordada con Chandler.",h:"Su risa es inconfundible."}
+],
+[
+{q:"¿Qué frase describe la famosa pausa en la relación de Ross y Rachel?",o:["We were on a break!","How you doin'?","Pivot!","Oh. My. God."],a:0,e:"La discusión sobre si estaban o no en una pausa es uno de los conflictos más conocidos de la serie.",h:"La frase contiene la palabra 'break'."},
+{q:"¿Qué personaje suele exclamar 'Oh. My. God.'?",o:["Janice","Monica","Phoebe","Emily"],a:0,e:"La expresión está asociada especialmente a Janice.",h:"Piensa en una voz nasal muy característica."},
+{q:"¿Qué objeto aparece como elemento central en el apartamento de Joey y Chandler?",o:["Una mesa de billar","Un futbolín","Una batería","Una máquina recreativa"],a:1,e:"El futbolín es uno de los elementos más emblemáticos de su apartamento.",h:"Es un juego de mesa con muñecos y barras."},
+{q:"¿Qué personaje se muda inicialmente con Monica al comienzo de la serie?",o:["Phoebe","Rachel","Janice","Emily"],a:1,e:"Rachel llega al apartamento de Monica tras abandonar su boda.",h:"Las dos se conocían desde el instituto."},
+{q:"¿Qué personaje trabaja en moda y llega a trabajar para Ralph Lauren?",o:["Phoebe","Rachel","Monica","Carol"],a:1,e:"Rachel desarrolla una carrera en el sector de la moda y trabaja para Ralph Lauren.",h:"Empieza como camarera en Central Perk."}
+],
+[
+{q:"¿Qué personaje se casa con Emily?",o:["Chandler","Ross","Joey","Richard"],a:1,e:"Ross se casa con Emily, en una boda que termina con un error muy recordado.",h:"La boda tiene lugar en Londres."},
+{q:"¿En qué ciudad se celebra la boda de Ross y Emily?",o:["París","Londres","Las Vegas","Nueva York"],a:1,e:"La boda se celebra en Londres.",h:"Es la capital del Reino Unido."},
+{q:"¿Qué personaje tiene un hijo llamado Ben?",o:["Joey","Ross","Chandler","Richard"],a:1,e:"Ben es el hijo de Ross y Carol.",h:"Su madre es la exmujer de Ross."},
+{q:"¿Quién se ofrece como madre de alquiler de los trillizos de su hermano?",o:["Rachel","Monica","Phoebe","Carol"],a:2,e:"Phoebe gesta a los trillizos de su hermano Frank Jr. y de Alice.",h:"Es la amiga más excéntrica del grupo."},
+{q:"¿Qué personaje se casa con Chandler?",o:["Rachel","Monica","Phoebe","Janice"],a:1,e:"Monica y Chandler se casan y forman una de las parejas centrales de la serie.",h:"La boda ocurre en la séptima temporada."}
+],
+[
+{q:"¿Cómo se llama el camarero de Central Perk enamorado de Rachel?",o:["Gunther", "Terry", "Ned", "Eddie"],a:0,e:"Gunther, el camarero del pelo platino, suspira por Rachel durante diez temporadas.",h:"Es rubio platino."},
+{q:"¿Cuál es la canción más famosa de Phoebe?",o:["Smelly Cat (Gato apestoso)", "Happy Dog", "Sad Fish", "Lonely Mouse"],a:0,e:"«Smelly cat, smelly cat…» es el gran éxito de Phoebe en Central Perk.",h:"Va de un gato con mal olor."},
+{q:"¿De qué color es el famoso sofá de Central Perk?",o:["Naranja", "Verde", "Azul", "Rojo"],a:0,e:"El sofá naranja es casi un personaje más de la serie.",h:"Color calabaza."},
+{q:"¿Qué personaje odia Acción de Gracias por un trauma de su infancia?",o:["Chandler", "Joey", "Ross", "Monica"],a:0,e:"Sus padres le anunciaron su divorcio en una cena de Acción de Gracias.",h:"Es el del sarcasmo."},
+{q:"¿Qué personaje deja plantado a su prometido y aparece en Central Perk vestida de novia?",o:["Rachel", "Monica", "Phoebe", "Carol"],a:0,e:"Así empieza la serie: Rachel huye de su boda con Barry.",h:"Acabará trabajando en moda."}
+]
+],
+[
+[
+{q:"¿De qué color es la puerta del apartamento de Monica y Rachel?",o:["Roja","Morada","Azul","Verde"],a:1,e:"La puerta morada con el marco amarillo de la mirilla es uno de los elementos visuales más icónicos.",h:"Es un color entre azul y violeta."},
+{q:"¿Qué hay alrededor de la mirilla de la puerta del apartamento?",o:["Un marco amarillo","Una corona verde","Un reloj","Una fotografía"],a:0,e:"El marco amarillo alrededor de la mirilla es un detalle visual muy reconocible.",h:"Es un objeto decorativo amarillo."},
+{q:"¿Quién es la compañera de piso de Monica al comienzo de la serie?",o:["Phoebe","Rachel","Janice","Ursula"],a:1,e:"Rachel se instala con Monica en el primer episodio.",h:"Llega vestida de novia."},
+{q:"¿Qué personaje es famoso por preparar cenas y organizar reuniones?",o:["Joey","Monica","Ross","Chandler"],a:1,e:"Monica suele encargarse de cocinar y organizar eventos.",h:"La cocina es su territorio."},
+{q:"¿Qué personaje es especialmente competitivo con los juegos y los deportes?",o:["Monica","Phoebe","Rachel","Ursula"],a:0,e:"La competitividad de Monica es una fuente recurrente de humor.",h:"No le gusta perder."}
+],
+[
+{q:"¿Qué personaje prepara habitualmente las comidas del grupo?",o:["Rachel","Monica","Phoebe","Janice"],a:1,e:"Monica es la cocinera del grupo.",h:"Es chef de profesión."},
+{q:"¿Qué alimento aparece asociado a la famosa tradición de Acción de Gracias de Monica?",o:["Pavo","Sushi","Pizza","Lasaña"],a:0,e:"Los episodios de Acción de Gracias suelen incluir grandes pavos y comidas familiares.",h:"Es el plato típico estadounidense de Thanksgiving."},
+{q:"¿Qué personaje tiene un armario que esconde un desorden inesperado?",o:["Rachel","Monica","Phoebe","Carol"],a:1,e:"El armario secreto de Monica revela que incluso la persona más ordenada guarda un espacio caótico.",h:"La sorpresa contradice su personalidad perfeccionista."},
+{q:"¿Quién es la madre de Ross y Monica?",o:["Judy","Amy","Nora","Estelle"],a:0,e:"Judy Geller es la madre de Ross y Monica.",h:"Su apellido es el mismo que el de sus hijos."},
+{q:"¿Con quién iba a casarse Rachel cuando huye del altar en el primer episodio?",o:["Barry","Richard","Paolo","Joshua"],a:0,e:"Rachel deja plantado a Barry, un ortodoncista, y aparece en Central Perk vestida de novia.",h:"Es ortodoncista."}
+],
+[
+{q:"¿Qué nombre falso utiliza Phoebe cuando no quiere dar el suyo?",o:["Regina Phalange","Princess Consuela","Ken Adams","Joanna Banana"],a:0,e:"Regina Phalange es el alias más famoso de Phoebe (Princess Consuela Banana-Hammock llegó después).",h:"Su apellido suena a hueso de la mano."},
+{q:"¿Qué personaje descubre que Monica y Chandler están juntos antes que el resto del grupo?",o:["Rachel","Joey","Phoebe","Ross"],a:1,e:"Joey descubre la relación y termina guardando el secreto durante un tiempo.",h:"Comparte apartamento con Chandler."},
+{q:"¿Qué personaje tiene una obsesión con los gatos en una de las tramas?",o:["Phoebe","Monica","Rachel","Emily"],a:0,e:"Phoebe se encariña con un gato que cree que podría estar relacionado con su madre.",h:"Es la amiga más espiritual del grupo."},
+{q:"¿Cómo se llama el pingüino de peluche de Joey?",o:["Hugsy","Pingu","Waddles","Mr. Penguin"],a:0,e:"Hugsy es el pingüino de peluche con el que duerme Joey, y no le gusta compartirlo.",h:"Su nombre viene de abrazar."},
+{q:"¿Cuál de estos elementos NO es una característica del apartamento de Monica?",o:["Puerta morada","Marco amarillo","Futbolín","Cocina amplia"],a:2,e:"El futbolín está asociado al apartamento de Joey y Chandler.",h:"¿En qué apartamento juegan los dos amigos?"}
+],
+[
+{q:"¿Cómo se llama la chica que da en adopción a los bebés de Monica y Chandler?",o:["Erica","Janice","Emily","Jill"],a:0,e:"Erica es la madre biológica; Monica y Chandler llaman Erica a la niña en su honor.",h:"Uno de los gemelos se llama igual que ella."},
+{q:"¿Qué pareja adopta gemelos al final de la serie?",o:["Ross y Rachel","Monica y Chandler","Phoebe y Mike","Joey y Rachel"],a:1,e:"Monica y Chandler adoptan a Jack y Erica.",h:"Se mudan fuera de Manhattan para formar su familia."},
+{q:"¿Qué personaje se convierte en padre de Emma?",o:["Joey","Ross","Chandler","Richard"],a:1,e:"Ross y Rachel son los padres de Emma.",h:"La niña nace en la octava temporada."},
+{q:"¿Con qué baile de instituto se lucen Monica y Ross en la fiesta de Nochevieja?",o:["La Rutina","El Pivot","La Langosta","El Unagi"],a:0,e:"«The Routine» es el baile que Monica y Ross ensayaron de pequeños y repiten en Nochevieja.",h:"Lo ensayaron siendo niños."},
+{q:"¿A qué se dedica Richard, el novio mayor de Monica?",o:["Oftalmólogo","Dentista","Abogado","Profesor"],a:0,e:"Richard Burke es oftalmólogo y amigo de los padres de Monica.",h:"Es médico de los ojos."}
+],
+[
+{q:"¿Qué se le queda atascado en la cabeza a Joey en Acción de Gracias?",o:["Un pavo", "Una calabaza", "Una olla", "Un sombrero"],a:0,e:"Joey mete la cabeza en el pavo para asustar a Monica… y no puede sacarla.",h:"Es el plato principal de la cena."},
+{q:"¿Qué pierden Monica y Rachel en el concurso de preguntas contra Joey y Chandler?",o:["Su apartamento", "El pato", "Cien dólares", "El futbolín"],a:0,e:"Pierden la apuesta y tienen que cambiarse de apartamento con los chicos.",h:"Lo más valioso que tenían."},
+{q:"En ese concurso, ¿qué palabra inventada dice Rachel que es el trabajo de Chandler?",o:["Transponster", "Datamaster", "Statistico", "Processor"],a:0,e:"«¡Transponster!»… que ni siquiera es una palabra.",h:"Suena a transportar."},
+{q:"¿Qué postre prepara Rachel en Acción de Gracias con carne por un error en la receta?",o:["Un trifle", "Una tarta de manzana", "Un flan", "Un tiramisú"],a:0,e:"Las páginas del libro estaban pegadas y mezcló un trifle con pastel de carne.",h:"Es un postre inglés por capas."},
+{q:"¿Quién se va a vivir con Monica cuando Rachel deja el apartamento?",o:["Chandler", "Joey", "Phoebe", "Ross"],a:0,e:"Monica y Chandler deciden vivir juntos y Rachel se muda.",h:"Acabará siendo su marido."}
+],
+[
+{q:"¿En qué ciudad empiezan Monica y Chandler su relación?",o:["Londres", "Las Vegas", "París", "Nueva York"],a:0,e:"Todo empieza en Londres, durante la boda de Ross y Emily.",h:"Allí se casaba Ross."},
+{q:"¿En qué ciudad están a punto de casarse por impulso Monica y Chandler?",o:["Las Vegas", "Londres", "Atlantic City", "Miami"],a:0,e:"Casi se casan en Las Vegas… pero ven salir a Ross y Rachel de la capilla.",h:"La ciudad de las capillas exprés."},
+{q:"¿Qué trofeo se disputan Monica y Ross en el partido de fútbol americano?",o:["La Copa Geller", "El Trofeo Bing", "La Super Bowl", "La Copa Langosta"],a:0,e:"La Geller Cup: un trofeo hecho con un muñeco troll pegado a un palo.",h:"Lleva su apellido."},
+{q:"Uno de los gemelos se llama como el padre de Monica y Ross. ¿Cómo?",o:["Jack", "Frank", "Leonard", "Joseph"],a:0,e:"El padre de Monica y Ross es Jack Geller.",h:"Empieza por J."},
+{q:"¿Quién oficia la boda de Monica y Chandler?",o:["Joey", "Ross", "El padre de Monica", "Un juez"],a:0,e:"Joey se ordena por internet para casarlos.",h:"Es actor… y ahora también ministro."}
+]
+],
+[
+[
+{q:"¿Cuál es el apellido de Joey?",o:["Bing","Tribbiani","Geller","Green"],a:1,e:"Joey Tribbiani es el nombre completo del actor.",h:"Su familia tiene raíces italianas."},
+{q:"¿Cómo se llama el agente de Joey?",o:["Estelle Leonard","Nora Tyler","Judy Geller","Susan Bunch"],a:0,e:"Estelle Leonard es la agente de Joey.",h:"Su nombre y apellido aparecen en la serie."},
+{q:"¿Qué papel televisivo le da a Joey una mayor notoriedad?",o:["Dr. Drake Ramoray","Detective Tribbiani","Dr. Bing","Rossbot"],a:0,e:"Joey interpreta al doctor Drake Ramoray en la telenovela Days of Our Lives.",h:"Es un personaje médico de ficción dentro de la serie."},
+{q:"¿Qué actividad realizan Joey y Chandler en su apartamento?",o:["Juegan al futbolín","Practican esgrima","Tocan en una banda","Hacen yoga"],a:0,e:"El futbolín es uno de sus pasatiempos más recurrentes.",h:"Hay una mesa dedicada a ello."},
+{q:"¿Qué tipo de comida le encanta especialmente a Joey?",o:["Ensalada","Sushi","Pizza","Verduras al vapor"],a:2,e:"Joey es especialmente conocido por su amor por la comida, incluida la pizza.",h:"Es un plato italiano muy popular."}
+],
+[
+{q:"¿Qué mascotas tienen Joey y Chandler en su apartamento?",o:["Un pollito y un pato","Un mono y un loro","Un perro y un gato","Una iguana y un pez"],a:0,e:"El pollito y el pato viven con Joey y Chandler durante varias temporadas.",h:"Son dos aves."},
+{q:"¿Cómo se llama el mono de Ross?",o:["Marcel","Maurice","Milo","Murray"],a:0,e:"Marcel es el mono capuchino que tiene Ross.",h:"Su nombre empieza por M."},
+{q:"¿Qué objeto comparten Joey y Chandler para descansar frente al televisor?",o:["Dos sillones reclinables","Una hamaca","Un sofá cama","Una tumbona"],a:0,e:"Los sillones reclinables son parte del mobiliario característico de su apartamento.",h:"Se reclinan hacia atrás."},
+{q:"¿Qué personaje tiene una frase de seducción muy característica en inglés?",o:["Ross","Joey","Chandler","Gunther"],a:1,e:"Joey es conocido por su frase 'How you doin'?' (cita muy breve).",h:"La usa para ligar."},
+{q:"¿Qué personaje suele bromear de forma sarcástica y trabaja en análisis estadístico y procesamiento de datos?",o:["Chandler","Joey","Ross","Mike"],a:0,e:"Chandler trabaja en análisis estadístico y procesamiento de datos antes de cambiar de carrera.",h:"Su trabajo es motivo de bromas porque los demás no lo recuerdan bien."}
+],
+[
+{q:"¿Qué serie de televisión es la telenovela en la que actúa Joey?",o:["Days of Our Lives","General Hospital","The Young and the Restless","All My Children"],a:0,e:"Joey interpreta a Drake Ramoray en Days of Our Lives.",h:"El título contiene la palabra 'Lives'."},
+{q:"¿Qué personaje es conocido por su humor sarcástico?",o:["Chandler","Joey","Ross","Ben"],a:0,e:"El sarcasmo es uno de los rasgos más característicos de Chandler.",h:"Suele utilizar bromas para gestionar situaciones incómodas."},
+{q:"¿Quién es el compañero de piso de Joey durante la mayor parte de la serie?",o:["Ross","Chandler","Gunther","Richard"],a:1,e:"Joey y Chandler comparten apartamento durante gran parte de la historia.",h:"Son dos de los seis protagonistas."},
+{q:"¿Qué nombre falso usa Joey cuando no quiere dar el suyo?",o:["Ken Adams","Drake Ramoray","Mike Hannigan","Joseph Stalin"],a:0,e:"Joey se presenta como Ken Adams… aunque luego no reacciona cuando le llaman así.",h:"Ken, como el novio de Barbie."},
+{q:"¿A qué se dedica Chandler al final de la serie, tras dejar su trabajo de oficina?",o:["Publicidad","Cocina","Paleontología","Masajes"],a:0,e:"Chandler empieza de becario en una agencia de publicidad y acaba trabajando como redactor publicitario.",h:"Crea anuncios."}
+],
+[
+{q:"¿Qué personaje tiene una hermana llamada Dina?",o:["Joey","Ross","Chandler","Mike"],a:0,e:"Dina es una de las hermanas de Joey.",h:"Pertenece a la familia Tribbiani."},
+{q:"¿Cuál es el nombre del padre de Joey?",o:["Joseph","Jack","Frank","Leonard"],a:0,e:"El padre de Joey se llama Joseph Tribbiani Sr.",h:"Comparte nombre con su hijo."},
+{q:"¿Qué personaje tiene una relación con Kathy, actriz y amiga del grupo?",o:["Joey y después Chandler","Ross","Gunther","Mike"],a:0,e:"Kathy mantiene una relación primero con Joey y posteriormente genera un conflicto con Chandler.",h:"La trama provoca tensión entre los dos compañeros."},
+{q:"¿Qué personaje ayuda a Joey a preparar una audición y practicar escenas en varias ocasiones?",o:["Chandler","Gunther","Ben","Jack"],a:0,e:"Chandler apoya a Joey en su carrera como actor.",h:"Es su compañero de piso y mejor amigo."},
+{q:"¿Qué personaje se queda viviendo solo en Nueva York al final de la serie principal?",o:["Joey","Ross","Chandler","Mike"],a:0,e:"Joey permanece en Nueva York, lo que sirve de punto de partida para su serie derivada.",h:"Su spin-off continúa sus aventuras."}
+],
+[
+{q:"¿Cómo se llama el sillón reclinable favorito de Joey?",o:["Rosita", "Bella", "Lola", "Pepita"],a:0,e:"Rosita es el sillón de Joey… y Chandler lo rompe.",h:"Es un nombre de chica muy latino."},
+{q:"¿Dónde se mete Chandler para pedirle perdón a Joey?",o:["En una caja", "En el armario", "En la bañera", "En el maletero"],a:0,e:"Chandler pasa Acción de Gracias metido en una caja como castigo.",h:"Es de cartón… o de madera."},
+{q:"Cuando Chandler le esconde la ropa interior, ¿qué hace Joey?",o:["Se pone toda la ropa de Chandler", "Se queda en pijama", "Se compra ropa nueva", "Llama a su madre"],a:0,e:"Joey aparece con TODA la ropa de Chandler puesta a la vez.",h:"Muchas capas…"},
+{q:"¿Qué serie ven Joey y Chandler juntos con devoción?",o:["Los vigilantes de la playa", "Star Trek", "Seinfeld", "Expediente X"],a:0,e:"Baywatch es su ritual televisivo.",h:"Hay socorristas."},
+{q:"¿A qué país dice Chandler que se muda para huir de Janice?",o:["Yemen", "Omán", "Siria", "Marruecos"],a:0,e:"Chandler acaba subiendo de verdad a un avión rumbo a Yemen.",h:"Está en la península arábiga."}
+],
+[
+{q:"Según Joey, algo que no importa es un «punto ___».",o:["muu", "guau", "miau", "pío"],a:0,e:"«It's a moo point»: como la opinión de una vaca. No importa.",h:"Lo dice una vaca."},
+{q:"¿Quién intenta enseñarle francés a Joey (sin mucho éxito)?",o:["Phoebe", "Rachel", "Monica", "Ross"],a:0,e:"Phoebe lo intenta… y Joey solo consigue decir tonterías con acento.",h:"La más paciente del grupo."},
+{q:"¿Qué se pone Joey para comerse un pavo entero en Acción de Gracias?",o:["Pantalones de embarazada", "Un chándal", "Un albornoz", "Un esmoquin"],a:0,e:"Los pantalones de premamá de Phoebe: «pantalones para comer».",h:"Son de Phoebe."},
+{q:"¿Cómo muere el doctor Drake Ramoray en la telenovela?",o:["Cae por el hueco de un ascensor", "En un accidente de coche", "Le dispara un villano", "En un naufragio"],a:0,e:"Joey lo provoca al decir que escribe sus propias frases.",h:"Hay un ascensor de por medio."},
+{q:"«¡Joey no comparte la ___!»",o:["comida", "cama", "ropa", "tele"],a:0,e:"La regla de oro de Joey.",h:"Sobre todo si es pizza."}
+]
+],
+[
+[
+{q:"¿Cuál es la profesión de Ross?",o:["Paleontólogo","Abogado","Chef","Médico"],a:0,e:"Ross es paleontólogo y trabaja como profesor universitario.",h:"Estudia fósiles y dinosaurios."},
+{q:"¿Cuántas veces se casa Ross durante la serie?",o:["Una","Dos","Tres","Cuatro"],a:2,e:"Ross se casa tres veces: con Carol, Emily y Rachel.",h:"Recuerda las bodas que terminan en matrimonio, no las relaciones."},
+{q:"¿Cómo se llama la primera esposa de Ross?",o:["Emily","Carol","Susan","Mona"],a:1,e:"Carol es la primera esposa de Ross y madre de Ben.",h:"Su relación con Susan forma parte de la historia."},
+{q:"¿En qué universidad trabaja Ross como profesor?",o:["Columbia","NYU","Princeton","Harvard"],a:1,e:"Ross da clase en la Universidad de Nueva York (NYU).",h:"Sus siglas incluyen «NY»."},
+{q:"¿Qué disfraz improvisa Ross para explicarle Janucá a Ben?",o:["El armadillo navideño","El pavo de Acción de Gracias","Un dinosaurio","Santa Claus"],a:0,e:"Al no encontrar disfraz de Papá Noel, Ross se convierte en el «Holiday Armadillo».",h:"Es un animal con caparazón."}
+],
+[
+{q:"¿En qué ciudad se celebra la boda de Ross y Emily?",o:["Londres","París","Roma","Dublín"],a:0,e:"La boda de Ross y Emily se celebra en Londres.",h:"Ross viaja a Reino Unido para la ceremonia."},
+{q:"¿Qué nombre pronuncia Ross por error durante su boda con Emily?",o:["Rachel","Carol","Monica","Susan"],a:0,e:"Ross pronuncia el nombre de Rachel en lugar del de Emily durante los votos.",h:"Es uno de los momentos más famosos de la serie."},
+{q:"¿Qué personaje es la madre de Ben?",o:["Carol","Rachel","Emily","Susan"],a:0,e:"Carol es la madre de Ben.",h:"Fue la primera esposa de Ross."},
+{q:"¿Con quién tiene Ross a su hija Emma?",o:["Rachel","Emily","Carol","Mona"],a:0,e:"Emma es hija de Ross y Rachel.",h:"Nace después de una noche entre ambos."},
+{q:"¿Qué personaje es la segunda esposa de Ross?",o:["Emily","Carol","Rachel","Mona"],a:0,e:"Emily es la segunda esposa de Ross.",h:"La boda tiene lugar en Londres."}
+],
+[
+{q:"¿Qué asignatura o campo académico enseña Ross?",o:["Paleontología","Derecho","Historia del arte","Química"],a:0,e:"Ross desarrolla su carrera en paleontología y trabaja como profesor.",h:"Su campo estudia la vida del pasado mediante fósiles."},
+{q:"¿Cómo llama Ross a su estado de alerta total aprendido en kárate?",o:["Unagi","Pivot","Kobe","Sashimi"],a:0,e:"Ross insiste en el «Unagi»… aunque unagi es en realidad anguila.",h:"También es un plato de sushi."},
+{q:"¿Qué personaje es la hermana de Ross?",o:["Monica","Phoebe","Rachel","Ursula"],a:0,e:"Monica Geller es la hermana de Ross.",h:"Ambos comparten apellido."},
+{q:"¿Qué nombre recibe el sándwich de Ross que desaparece del trabajo?",o:["Moist Maker","The Ross Special","Turkey Tower","The Geller"],a:0,e:"El 'Moist Maker' es el sándwich de Acción de Gracias de Ross, cuya desaparición provoca su famoso enfado.",h:"Su nombre es una expresión en inglés."},
+{q:"¿Qué personaje imparte una clase de paleontología en la universidad?",o:["Ross","Chandler","Joey","Mike"],a:0,e:"Ross enseña en la universidad.",h:"Es el académico del grupo."}
+],
+[
+{q:"¿Cuál es el segundo nombre de Ross?",o:["Eustace","Geller","Francis","No se conoce"],a:0,e:"El segundo nombre de Ross es Eustace.",h:"Es un nombre que le avergüenza."},
+{q:"¿Qué personaje tiene una relación con Elizabeth, una estudiante universitaria?",o:["Ross","Joey","Chandler","Gunther"],a:0,e:"Ross sale con Elizabeth, una de sus alumnas, lo que genera complicaciones.",h:"Es una trama de la sexta temporada."},
+{q:"¿Qué personaje es padre de Ben y Emma?",o:["Ross","Joey","Chandler","Mike"],a:0,e:"Ross es padre de Ben y Emma.",h:"Tiene dos hijos a lo largo de la serie."},
+{q:"¿De dónde es Emily, la segunda esposa de Ross?",o:["Inglaterra","Francia","Irlanda","Australia"],a:0,e:"Emily es inglesa y la boda se celebra en Londres.",h:"Allí se toma el té a las cinco."},
+{q:"¿Qué personaje dice con frecuencia que está 'fine' cuando claramente no lo está?",o:["Ross","Joey","Chandler","Gunther"],a:0,e:"Ross intenta aparentar que está bien en situaciones de tensión emocional.",h:"Piensa en sus celos y su relación con Rachel."}
+],
+[
+{q:"¿Cuál es el nombre completo de la hija de Ross y Rachel?",o:["Emma Geller-Green","Emma Tribbiani","Emily Geller","Rachel Junior"],a:0,e:"Emma es hija de Ross Geller y Rachel Green.",h:"Combina los apellidos de sus padres."},
+{q:"¿Qué personaje se casa en Las Vegas con Rachel durante una noche de borrachera?",o:["Ross","Joey","Chandler","Mike"],a:0,e:"Ross y Rachel se casan en Las Vegas, lo que desencadena una trama posterior.",h:"El matrimonio ocurre en una capilla de bodas."},
+{q:"¿Qué personaje es la última pareja de Phoebe y con quien se casa?",o:["Mike Hannigan","David","Richard","Gary"],a:0,e:"Phoebe se casa con Mike Hannigan.",h:"Lo interpreta Paul Rudd."},
+{q:"En el último episodio, ¿a qué aeropuerto tienen que ir corriendo Ross y Phoebe para alcanzar a Rachel?",o:["JFK","Newark","LaGuardia","Boston Logan"],a:1,e:"Primero van a JFK, pero el vuelo de Rachel sale de Newark.",h:"No es el primero al que van."},
+{q:"¿Cuál es el primer trabajo de Rachel en la serie?",o:["Camarera en Central Perk","Asistente en Bloomingdale's","Diseñadora en Ralph Lauren","Dependienta en una zapatería"],a:0,e:"Rachel empieza sirviendo cafés (bastante mal) en Central Perk.",h:"Trabaja donde siempre se reúnen."}
+],
+[
+{q:"¿Qué grita Ross mientras suben su sofá por la escalera?",o:["¡Pivot!", "¡Arriba!", "¡Empuja!", "¡Gira!"],a:0,e:"PIVOT! PIVOT! PIVOOOT!",h:"Significa girar."},
+{q:"¿Qué le pasa a Ross tras blanquearse los dientes demasiado?",o:["Le brillan muchísimo", "Se le caen", "Se le ponen azules", "No le pasa nada"],a:0,e:"En su cita, con luz negra, sus dientes brillan como focos.",h:"Mucha luz."},
+{q:"¿Qué prenda le da problemas a Ross en una cita en el baño?",o:["Unos pantalones de cuero", "Una corbata", "Unos zapatos nuevos", "Un jersey de lana"],a:0,e:"No consigue volver a subirse los pantalones de cuero.",h:"Son ajustadísimos."},
+{q:"¿Qué sale mal cuando Ross va a broncearse con spray?",o:["Se queda morenísimo por delante", "Se queda naranja entero", "No se broncea nada", "Se le cae el pelo"],a:0,e:"Cuenta mal los segundos y se gira demasiado tarde… varias veces.",h:"Le pasa por un lado."},
+{q:"¿Qué le pasa a Ross después de que su jefe se coma su sándwich?",o:["Le obligan a coger una baja", "Le ascienden", "Se va a Londres", "Deja la paleontología"],a:0,e:"Su ataque de ira por el sándwich termina en una baja forzosa.",h:"No vuelve a trabajar en un tiempo."}
+]
+],
+[
+[
+{q:"¿Qué personaje se muda a París por una oportunidad laboral?",o:["Rachel","Monica","Phoebe","Janice"],a:0,e:"Rachel recibe una oportunidad profesional en Louis Vuitton en París.",h:"Es el destino que plantea el conflicto final."},
+{q:"¿Qué personaje trabaja en una empresa de moda llamada Ralph Lauren?",o:["Rachel","Monica","Phoebe","Carol"],a:0,e:"Rachel desarrolla una carrera en moda y trabaja para Ralph Lauren.",h:"Su trayectoria profesional empieza en Bloomingdale's."},
+{q:"¿Qué personaje se casa con Mike Hannigan?",o:["Phoebe","Rachel","Monica","Janice"],a:0,e:"Phoebe y Mike se casan en la nieve frente al edificio.",h:"Lo interpreta Paul Rudd."},
+{q:"¿Qué personaje se muda a una casa en las afueras con su pareja y sus hijos adoptivos?",o:["Monica y Chandler","Ross y Rachel","Joey y Phoebe","Rachel y Joey"],a:0,e:"Monica y Chandler se mudan a una casa fuera de la ciudad.",h:"Es el comienzo de su nueva vida familiar."},
+{q:"¿Qué personaje protagoniza la serie derivada Joey?",o:["Joey Tribbiani","Ross Geller","Chandler Bing","Gunther"],a:0,e:"Joey es el protagonista del spin-off que lleva su nombre.",h:"El título es su nombre."}
+],
+[
+{q:"¿Qué personaje tiene una relación romántica con David, el científico?",o:["Phoebe","Rachel","Monica","Janice"],a:0,e:"Phoebe mantiene una relación con David, un científico que se marcha a Minsk.",h:"Su profesión es la ciencia."},
+{q:"¿A qué ciudad se marcha David por trabajo?",o:["Minsk","Londres","París","Roma"],a:0,e:"David se marcha a Minsk por un proyecto científico.",h:"Es la capital de Bielorrusia."},
+{q:"¿Qué personaje trabaja como masajista?",o:["Phoebe","Monica","Rachel","Emily"],a:0,e:"Phoebe trabaja como masajista y también toca música.",h:"Su trabajo implica tratamientos de bienestar."},
+{q:"¿Qué personaje es el padre biológico de los trillizos de Phoebe?",o:["Frank Jr.","Ross","Mike","Joey"],a:0,e:"Frank Jr. es el hermano de Phoebe y padre de los trillizos junto con Alice.",h:"Es el hermano menor de Phoebe."},
+{q:"¿Qué personaje tiene una boda al aire libre en una ceremonia nevada?",o:["Phoebe y Mike","Monica y Chandler","Ross y Emily","Rachel y Ross"],a:0,e:"Phoebe y Mike se casan en una ceremonia en la calle nevada.",h:"La boda sucede cerca de Central Perk."}
+],
+[
+{q:"¿Cuántas temporadas tiene Friends?",o:["8","9","10","11"],a:2,e:"Friends tiene diez temporadas.",h:"La serie se emitió entre 1994 y 2004."},
+{q:"¿En qué año se estrenó Friends?",o:["1990","1994","1996","1998"],a:1,e:"Friends se estrenó en septiembre de 1994.",h:"A mitad de los años noventa."},
+{q:"¿En qué año terminó la serie original?",o:["2001","2002","2004","2006"],a:2,e:"El episodio final se emitió en mayo de 2004.",h:"Diez años después del estreno."},
+{q:"¿Cuántos episodios tiene la serie original?",o:["180","200","236","250"],a:2,e:"Friends cuenta con 236 episodios repartidos en diez temporadas.",h:"Son más de doscientos."},
+{q:"¿Qué canal estadounidense emitió originalmente Friends?",o:["NBC","ABC","CBS","FOX"],a:0,e:"Friends se emitió originalmente en NBC.",h:"Sus siglas tienen tres letras."}
+],
+[
+{q:"¿Qué personaje acaba aceptando una oportunidad laboral en París?",o:["Rachel","Phoebe","Monica","Joey"],a:0,e:"Rachel acepta una oportunidad profesional en París, aunque el desenlace cambia sus planes.",h:"La decisión se resuelve en el final."},
+{q:"¿Qué personaje se queda en Nueva York para seguir con su carrera como actor?",o:["Joey","Ross","Chandler","Mike"],a:0,e:"Joey permanece en Nueva York y después protagoniza su propio spin-off.",h:"No se muda con Monica y Chandler."},
+{q:"¿Qué pareja termina criando a los gemelos Jack y Erica?",o:["Monica y Chandler","Ross y Rachel","Phoebe y Mike","Joey y Rachel"],a:0,e:"Monica y Chandler adoptan a los gemelos Jack y Erica.",h:"Se mudan a una casa nueva."},
+{q:"¿Qué pareja tiene una hija llamada Emma?",o:["Ross y Rachel","Monica y Chandler","Phoebe y Mike","Joey y Phoebe"],a:0,e:"Emma es hija de Ross y Rachel.",h:"Nace en la octava temporada."},
+{q:"¿Qué personaje se casa con Mike en la última parte de la serie?",o:["Phoebe","Rachel","Monica","Janice"],a:0,e:"Phoebe se casa con Mike Hannigan.",h:"Su boda tiene nieve."}
+],
+[
+{q:"¿Cómo se llaman las siglas del informe semanal que hace Chandler?",o:["WENUS", "DATA", "NETS", "PIVOT"],a:0,e:"Weekly Estimated Net Usage Systems: el famoso WENUS.",h:"Suena parecido a un planeta."},
+{q:"¿Qué personaje tiene un tercer pezón?",o:["Chandler", "Joey", "Ross", "Mike"],a:0,e:"Chandler tiene un pezón extra… y no le hace ninguna gracia.",h:"Es un secreto que no quería contar."},
+{q:"¿Qué personaje perdió parte de un dedo del pie por culpa de un cuchillo de Monica?",o:["Chandler", "Ross", "Joey", "Gunther"],a:0,e:"A Monica se le cayó un cuchillo en el pie de Chandler en Acción de Gracias.",h:"Otra razón para odiar esa fiesta."},
+{q:"¿Cómo se llama la madre biológica de Phoebe?",o:["Phoebe Abbott", "Lily Buffay", "Ursula", "Alice"],a:0,e:"Phoebe descubre que su madre biológica se llama como ella: Phoebe.",h:"Comparten nombre."},
+{q:"¿Cómo se llama la abuela de Phoebe?",o:["Frances", "Lily", "Judy", "Gloria"],a:0,e:"La abuela Frances crió a Phoebe y vivía con ella.",h:"Empieza por F."}
+],
+[
+{q:"En el episodio final, ¿qué sucede finalmente con Ross y Rachel?",o:["Rachel se marcha a París","Rachel se queda con Ross","Ross se muda a Londres","No vuelven a hablar"],a:1,e:"Rachel decide bajarse del avión y quedarse en Nueva York con Ross.",h:"El final resuelve su historia romántica."},
+{q:"¿Qué dejan los seis amigos sobre la encimera del apartamento al final?",o:["Las llaves","Una fotografía","Una carta","Un anillo"],a:0,e:"Los amigos dejan las llaves del apartamento de Monica y Chandler sobre la encimera.",h:"Es un gesto simbólico de despedida."},
+{q:"¿Qué lugar visitan los amigos en el último episodio antes de despedirse?",o:["Central Perk","El museo","El aeropuerto","La universidad"],a:0,e:"Central Perk sigue siendo el punto de encuentro final.",h:"Es el café de siempre."},
+{q:"¿De quién está enamorado en secreto Gunther durante toda la serie?",o:["Rachel","Monica","Phoebe","Janice"],a:0,e:"Gunther está enamorado de Rachel y se lo confiesa en el último episodio.",h:"Trabajaron juntos en Central Perk."},
+{q:"Según Phoebe, ¿qué animal se empareja para toda la vida, como Ross y Rachel?",o:["La langosta","El pingüino","El cisne","El lobo"],a:0,e:"«She's his lobster»: Phoebe explica que las langostas se emparejan para siempre.",h:"Tiene pinzas. 🦞"}
+]
+]
+];
+
+let state=JSON.parse(localStorage.getItem("friendsTestSave")||"null")||{done:[],score:0,name:"Lucía",hintUsed:0};state.name="Lucía";
+let activeZone=0,activeLevel=0,questions=[],qIndex=0,runCorrect=0,runPoints=0,answered=false,timer=null,timeLeft=20,hintUsedThis=false;
+const $=id=>document.getElementById(id);
+function save(){localStorage.setItem("friendsTestSave",JSON.stringify(state));updateHome()}
+function completed(z,l){return state.done.includes(z*6+l)}
+function zoneComplete(z){return Array.from({length:6},(_,i)=>completed(z,i)).every(Boolean)}
+function fechaAbierta(z){return Universo.desbloqueado(FECHA_ZONA[z])}
+function zoneUnlocked(z){return true}
+const fmtDia=d=>"viernes "+d+" de diciembre";
+function rank(){let p=state.score;if(p>=4200)return"Superfan";if(p>=2800)return"Fan legendaria";if(p>=1600)return"Fan experta";if(p>=700)return"Fan";return"Novata"}
+function updateHome(){
+ let count=state.done.length;$("homeProgress").textContent=count+"/30";$("homeScore").textContent=state.score;$("homeRank").textContent=rank();
+ $("temporadas").innerHTML=TEMPORADAS.map(t=>{const ab=Universo.desbloqueado(t.d);return `<div class="temp ${ab?"on":""}"><b>${t.t} ${ab?"· abierta":"🔒"}</b>${ab?t.zonas.map(z=>zones[z].name).join(" · "):"Se estrena el "+fmtDia(t.d)}</div>`}).join("");
+ document.querySelectorAll("#miniMap .pin").forEach((p,i)=>{const sm=p.querySelector("small");if(!p.dataset.sub)p.dataset.sub=sm.textContent;p.classList.toggle("fecha",!fechaAbierta(i));sm.textContent=fechaAbierta(i)?p.dataset.sub:"🔒 Se abre el "+FECHA_ZONA[i]+" dic";p.classList.toggle("locked",!zoneUnlocked(i));p.classList.toggle("done",i<5&&Array.from({length:6},(_,j)=>completed(i,j)).every(Boolean));p.classList.toggle("current",i===Math.min(4,Math.floor(count/6))&&!Array.from({length:6},(_,j)=>completed(i,j)).every(Boolean))});
+ $("zoneList").innerHTML=zones.map((z,i)=>{let n=Array.from({length:6},(_,j)=>completed(i,j)).filter(Boolean).length;return `<button class="zone" style="background-image:url(${IMG}${LUGARES[i].hero}.jpg)" onclick="openZone(${i})" ${zoneUnlocked(i)?"":"disabled"}><span class="zemoji">${z.emoji}</span><span><b>${z.name}</b><small>${z.subtitle} · ${n}/6 desafíos</small></span><span class="tag">${zoneUnlocked(i)?(n===6?"COMPLETADO":"DISPONIBLE"):(fechaAbierta(i)?"🔒 Completa la anterior":"🔒 "+FECHA_ZONA[i]+" DIC")}</span></button>`}).join("");
+}
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));$(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"})}
+function goMap(){clearInterval(timer);show("home");updateHome();setFondo("f02")}
+function openZone(i){if(!fechaAbierta(i)){toast("Esta localización se estrena el "+fmtDia(FECHA_ZONA[i])+" ✨");return}if(!zoneUnlocked(i)){toast("Completa primero los seis desafíos de la localización anterior.");return}activeZone=i;let z=zones[i];$("zoneEyebrow").textContent="LOCALIZACIÓN 0"+(i+1)+" · "+z.subtitle.toUpperCase();$("zoneTitle").textContent=z.emoji+" "+z.name;$("zoneDesc").textContent=z.desc;setFondo(LUGARES[i].hero);$("levelGrid").innerHTML=z.levels.map((l,j)=>{let done=completed(i,j),unlocked=true;const lg=LUGARES[i].lv[j];return `<button class="level ${done?"done":""} ${unlocked?"":"locked"}" style="background-image:url(${IMG}${lg[0]}.jpg);background-position:${lg[2]||"center"}" onclick="startLevel(${i},${j})" ${unlocked?"":"disabled"}><span class="num">EPISODIO ${i+1}x0${j+1} ${done?"✓":unlocked?"· DISPONIBLE":"· 🔒"}</span><span class="lugar">📍 ${lg[1]}</span><strong>${l}</strong><small>${done?"Superado":unlocked?"Entra y demuestra lo que sabes":"Completa el desafío anterior"}</small></button>`}).join("");show("zoneScreen")}
+function startLevel(z,l){return startLevel2(z,l)}
+function startLevel2(z,l){const lg=LUGARES[z].lv[l];setFondo(lg[0],lg[2]);activeZone=z;activeLevel=l;questions=Q[z][l].map(x=>({...x}));qIndex=0;runCorrect=0;runPoints=0;hintUsedThis=false;show("quizScreen");renderQuestion()}
+function renderQuestion(){clearInterval(timer);answered=false;hintUsedThis=false;let q=questions[qIndex];timeLeft=20;$("quizLocation").textContent=zones[activeZone].name.toUpperCase();$("quizScore").textContent=state.score+runPoints;$("timer").textContent=timeLeft;$("quizProgress").style.width=(qIndex/questions.length*100)+"%";$("qKicker").textContent="EPISODIO "+(activeZone+1)+"x0"+(activeLevel+1)+" · "+LUGARES[activeZone].lv[activeLevel][1].toUpperCase()+" · PREGUNTA "+(qIndex+1)+"/"+questions.length;$("question").textContent=q.q;$("feedback").className="feedback";$("feedback").innerHTML="";$("nextBtn").style.display="none";$("hintBtn").disabled=false;$("options").innerHTML=q.o.map((o,i)=>`<button class="option" onclick="answer(${i})"><span class="letter">${"ABCD"[i]}</span><span>${o}</span></button>`).join("");timer=setInterval(()=>{timeLeft--;$("timer").textContent=timeLeft;if(timeLeft<=0){clearInterval(timer);answer(-1,true)}},1000)}
+function answer(i,timeout=false){if(answered)return;answered=true;clearInterval(timer);let q=questions[qIndex],correct=i===q.a;sonar(correct);let opts=[...$("options").children];opts.forEach((b,k)=>{b.disabled=true;if(k===q.a)b.classList.add("correct");if(k===i&&!correct)b.classList.add("wrong")});if(correct){runCorrect++;let pts=100+(timeLeft*2)-(hintUsedThis?25:0);runPoints+=Math.max(25,pts)}$("feedback").className="feedback show";$("feedback").innerHTML=correct?`<b>¡Correcto! +${Math.max(25,100+timeLeft*2-(hintUsedThis?25:0))} puntos</b><br>${q.e}`:`<b>${timeout?"Se acabó el tiempo.":"No era esa."}</b> La respuesta correcta era: <b>${q.o[q.a]}</b><br>${q.e}`;$("nextBtn").style.display="inline-block";$("nextBtn").textContent=qIndex===questions.length-1?"VER RESULTADO →":"SIGUIENTE →";$("hintBtn").disabled=true}
+function useHint(){if(answered||hintUsedThis)return;let q=questions[qIndex],wrong=[...$("options").children].filter((b,i)=>i!==q.a&&!b.disabled);if(wrong.length){let b=wrong[Math.floor(Math.random()*wrong.length)];b.style.opacity=".25";b.disabled=true;hintUsedThis=true;state.hintUsed++;toast("Pista utilizada: una respuesta incorrecta ha desaparecido.")}
+}
+function nextQuestion(){if(!answered)return;if(qIndex<questions.length-1){qIndex++;renderQuestion()}else finishLevel()}
+function finishLevel(){clearInterval(timer);let key=activeZone*6+activeLevel;const yaZona=zoneComplete(activeZone);if(!completed(activeZone,activeLevel)){state.done.push(key);state.score+=runPoints}save();
+ TEMPORADAS.forEach(t=>{if(t.zonas.every(zoneComplete))Universo.completar(t.d)});
+ if(runCorrect===5)confeti();
+ if(!yaZona&&zoneComplete(activeZone)&&activeZone<4)setTimeout(()=>carta(activeZone),900);$("resultEmoji").textContent=runCorrect===5?"🏆":runCorrect>=3?"⭐":"☕";$("resultTitle").textContent=runCorrect===5?"¡PERFECTO!":runCorrect>=3?"¡Buen trabajo!":"¡Desafío completado!";$("resultText").textContent=runCorrect===5?"Cinco de cinco. Has demostrado un conocimiento impecable en esta prueba.":runCorrect>=3?"Has superado el desafío. La siguiente prueba te espera.":"Has completado el nivel. Repasa los detalles y sigue avanzando por Nueva York."; $("resultPoints").textContent=runPoints;$("resultCorrect").textContent=runCorrect+"/5";$("resultRank").textContent=rank();show("resultScreen");if(state.done.length===30&&!state.finalVisto){state.finalVisto=true;save();setTimeout(()=>{showFinal();confeti()},900)}}
+function backToZone(){openZone(activeZone)}
+const INTRO_YT="iwXoGYR8BAM";
+function verIntro(){openModal(`<div class="eyebrow">THE ONE WHERE IT ALL BEGINS</div><h2>Bienvenida a Nueva York, Lucía</h2><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${INTRO_YT}?autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div><button class="primary" onclick="cerrarIntro()">EMPEZAR LA AVENTURA →</button>`);$("modalContent").classList.add("ancho")}
+function cerrarIntro(){$("modalContent").innerHTML="";$("modalContent").classList.remove("ancho");closeModal();state.introVista=true;save()}
+function carta(z){const c=CARTAS[z],sig=zones[z+1],abre=sig&&!fechaAbierta(z+1);openModal(`<div class="eyebrow">LOCALIZACIÓN COMPLETADA · ${zones[z].name.toUpperCase()}</div><h2>Has ganado una polaroid</h2><div class="polaroid"><div class="foto">${c.e}</div><p>${c.t}</p></div><p>${sig?(abre?"La siguiente localización, <b>"+sig.name+"</b>, se estrena el <b>"+fmtDia(FECHA_ZONA[z+1])+"</b>.":"¡<b>"+sig.name+"</b> ya está abierta!"):""}</p><button class="primary" onclick="closeModal()">GUARDAR LA POLAROID</button>`);confeti()}
+let sonido=localStorage.getItem("friendsSonido")!=="0",ac=null;
+function toggleSonido(){sonido=!sonido;localStorage.setItem("friendsSonido",sonido?"1":"0");$("sonidoBtn").textContent=sonido?"🔊":"🔇"}
+function sonar(ok){if(!sonido)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const notas=ok?[660,880]:[300,220];notas.forEach((f,i)=>{const o=ac.createOscillator(),g=ac.createGain();o.type=ok?"triangle":"sawtooth";o.frequency.value=f;g.gain.setValueAtTime(0.0001,ac.currentTime+i*.12);g.gain.exponentialRampToValueAtTime(ok?.18:.08,ac.currentTime+i*.12+.02);g.gain.exponentialRampToValueAtTime(0.0001,ac.currentTime+i*.12+.25);o.connect(g).connect(ac.destination);o.start(ac.currentTime+i*.12);o.stop(ac.currentTime+i*.12+.3)})}catch(e){}}
+function confeti(){const c=$("confeti"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;const P=Array.from({length:150},()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height*.5,v:2+Math.random()*3.5,r:Math.random()*6,c:["#f4c95d","#e88778","#83c9ad","#7650a5","#fff4df"][Math.random()*5|0],s:5+Math.random()*6}));(function f(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.y+=p.v;p.x+=Math.sin(p.y/25+p.r);x.fillStyle=p.c;x.fillRect(p.x,p.y,p.s,p.s*.6)});if(P.some(p=>p.y<c.height))requestAnimationFrame(f);else x.clearRect(0,0,c.width,c.height)})()}
+function confirmExit(){openModal(`<div class="eyebrow">PAUSA</div><h2>¿Abandonar este desafío?</h2><p>El progreso de esta ronda no se guardará hasta completar las cinco preguntas.</p><button class="primary" onclick="closeModal();openZone(activeZone)">Salir del desafío</button> <button class="secondary" onclick="closeModal()">Seguir jugando</button>`)}
+function openModal(html){$("modalContent").innerHTML=html;$("modal").classList.add("show")}
+function closeModal(){$("modal").classList.remove("show")}
+function toast(s){$("toast").textContent=s;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2200)}
+function showHelp(){openModal(`<div class="eyebrow">GUÍA DEL JUEGO</div><h2>Cómo jugar</h2><p>El reto se estrena en tres temporadas: <b>viernes 4</b> (Central Perk y el apartamento de Monica), <b>viernes 11</b> (Joey &amp; Chandler y el Museo de Ross) y <b>viernes 18 de diciembre</b> (el gran final). Al completar cada localización ganas una polaroid.</p><p>Recorre las cinco localizaciones de Nueva York. Cada una contiene seis desafíos de cinco preguntas. Acierta para sumar puntos, utiliza pistas con moderación y completa los seis desafíos de cada zona para desbloquear la siguiente.</p><p><b>100 puntos</b> por respuesta correcta, más una bonificación por rapidez. Cada pregunta tiene 20 segundos. Las respuestas y explicaciones aparecen al contestar.</p><button class="primary" onclick="closeModal()">ENTENDIDO</button>`)}
+function openSettings(){openModal(`<div class="eyebrow">PERSONALIZA LA EXPERIENCIA</div><h2>Una aventura para alguien especial</h2><p>Introduce el nombre de la protagonista y aparecerá en la bienvenida final.</p><input class="field" id="playerName" placeholder="Su nombre" value="${escapeHtml(state.name)}"><p>También puedes editar el mensaje final secreto desde el código del juego.</p><button class="primary" onclick="state.name=document.getElementById('playerName').value.trim();save();closeModal();toast('Personalización guardada')">GUARDAR</button> <button class="secondary" onclick="closeModal()">CERRAR</button>`)}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function showFinal(){let n=state.name?escapeHtml(state.name):"Fan de Friends";openModal(`<div class="big">🎉</div><div class="eyebrow">THE ONE WHERE YOU DID IT</div><h2>¡Lo has conseguido, ${n}!</h2><p>Has recorrido Nueva York, superado los 30 desafíos y demostrado que conoces el universo de Friends.</p><p><b>Tu resultado: ${state.score} puntos · Rango: ${rank()}</b></p><div style="background:#171321;border-radius:15px;padding:18px;margin:18px 0"><div style="font-size:12px;color:var(--yellow);letter-spacing:.15em">UN MENSAJE ESPECIAL</div><p style="color:var(--cream);margin-bottom:0">Hay algo que no estaba en el mapa, ni en las preguntas, ni en ninguna temporada: yo he preparado esta aventura especialmente para ti. Porque como dice Phoebe, las langostas se emparejan para toda la vida… y tú eres la mía. 🦞❤️<br><br>— Alberto</p></div><button class="primary" onclick="closeModal()">GUARDAR ESTE MOMENTO</button>`)}
+function resetGame(){openModal(`<div class="eyebrow">REINICIAR PARTIDA</div><h2>¿Seguro que quieres empezar de cero?</h2><p>Se borrarán los desafíos completados y la puntuación guardada en este dispositivo.</p><button class="primary" onclick="state={done:[],score:0,name:state.name,hintUsed:0};save();closeModal();goMap()">REINICIAR</button> <button class="secondary" onclick="closeModal()">CANCELAR</button>`)}
+$("logoHero").innerHTML=logoHTML();$("brand").innerHTML=`<span class="logoF">${logoHTML()}</span>`;setFondo("f02");
+if(!state.introVista)setTimeout(verIntro,400);
+updateHome();$("sonidoBtn").textContent=sonido?"🔊":"🔇";
+</script>
+</body>
+</html>
